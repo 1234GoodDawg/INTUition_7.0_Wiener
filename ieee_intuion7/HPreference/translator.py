@@ -9,14 +9,15 @@ from docx import Document
 
 def translate_document():
     
-    file = os.listdir('/tmp/')[0]
+    tmpDir = '/tmp/'
+    file = os.listdir(tmpDir)[0]
     
     def astype_per_column(df: pd.DataFrame, column: str, dtype):
         df[column] = df[column].astype(dtype)
    
     if file.endswith('.pdf'):
         
-        tabula.convert_into(f'/tmp/{file}','data.csv', pages='all')
+        tabula.convert_into(tmpDir + file,'data.csv', pages='all')
         df = pd.read_csv('data.csv') 
 
         translator = google_translator()
@@ -26,12 +27,12 @@ def translate_document():
         for i in range(len(df)):
             df.loc[i,'Name'] = translator.translate(df.iloc[i,1], lang_tgt = 'en')
         
-        df.to_csv('translated_data.csv',sep=',')
+        df.to_csv(f'{tmpDir}translated_data.csv',sep=',')
  
     elif file.endswith('.xlsx'):
     
     
-        df2 = pd.read_excel(f'/tmp/{file}')
+        df2 = pd.read_excel(tmpDir + file)
         df2 = df2.take([3,25],axis=1)
     
         indexes_to_drop = list(range(0,25)) + list(range(38,50))
@@ -45,12 +46,12 @@ def translate_document():
         for i in range(len(df_sliced)):
             df_sliced.loc[i,'Name'] = translator.translate(df_sliced.iloc[i,1], lang_tgt = 'en')
     
-        df_sliced.to_csv('translated_data.csv',sep=',')
+        df_sliced.to_csv(f'{tmpDir}translated_data.csv',sep=',')
     
     
     elif file.endswith('.docx'):
     
-        document = Document(f'/tmp/{file}')
+        document = Document(tmpDir + file')
         table = document.tables[0]
         data = [[cell.text for cell in row.cells] for row in table.rows]
     
@@ -66,8 +67,8 @@ def translate_document():
             df.loc[i,'Name'] = translator.translate(df.iloc[i,1], lang_tgt = 'en')
     
     
-        df.to_csv('translated_data.csv',sep=',')
+        df.to_csv(f'{tmpDir}translated_data.csv',sep=',')
     
-    os.remove(f'/tmp/{file}')
-    return os.path.isfile('translated_data.csv')
+    os.remove(tmpDir + file)
+    return os.path.isfile(f'{tmpDir}translated_data.csv')
 
