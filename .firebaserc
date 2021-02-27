@@ -1,0 +1,6 @@
+{
+  "projects": {
+    "default": "ieeeintuition-hp-chemsearch",
+    "ieeeintuition": "ieeeintuition-hp-chemsearch"
+  }
+}
