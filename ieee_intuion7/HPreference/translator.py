@@ -5,6 +5,8 @@ import pandas as pd
 import plotly.figure_factory as ff
 import os
 
+file = os.listdir('/temp/')
+
 
 if file.endswith('.pdf'):
 
