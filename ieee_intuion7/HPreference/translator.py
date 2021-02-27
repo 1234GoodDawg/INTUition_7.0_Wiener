@@ -1,12 +1,3 @@
-~pip install google_trans_new
-~pip install tabula-py
-~pip install plotly>=4.0.0
-~wget https://github.com/plotly/orca/releases/download/v1.2.1/orca-1.2.1-x86_64.AppImage -O /usr/local/bin/orca
-~chmod +x /usr/local/bin/orca
-~apt-get install xvfb libgtk2.0-0 libgconf-2-4
-
-
-
 import google_trans_new
 from google_trans_new import google_translator
 import tabula
