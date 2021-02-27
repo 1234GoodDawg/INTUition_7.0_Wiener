@@ -51,7 +51,7 @@ def translate_document():
     
     elif file.endswith('.docx'):
     
-        document = Document(tmpDir + file')
+        document = Document(tmpDir + file)
         table = document.tables[0]
         data = [[cell.text for cell in row.cells] for row in table.rows]
     
