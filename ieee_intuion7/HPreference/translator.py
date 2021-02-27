@@ -16,7 +16,7 @@ def translate_document():
    
     if file.endswith('.pdf'):
         
-        tabula.convert_into(file,'data.csv', pages='all')
+        tabula.convert_into(f'/tmp/{file}','data.csv', pages='all')
         df = pd.read_csv('data.csv') 
 
         translator = google_translator()
@@ -32,7 +32,7 @@ def translate_document():
     elif file.endswith('.xlsx'):
     
     
-        df2 = pd.read_excel(file)
+        df2 = pd.read_excel(f'/tmp/{file}')
         df2 = df2.take([3,25],axis=1)
     
         indexes_to_drop = list(range(0,25)) + list(range(38,50))
@@ -51,7 +51,7 @@ def translate_document():
     
     elif file.endswith('.docx'):
     
-        document = Document(file)
+        document = Document(f'/tmp/{file}')
         table = document.tables[0]
         data = [[cell.text for cell in row.cells] for row in table.rows]
     
