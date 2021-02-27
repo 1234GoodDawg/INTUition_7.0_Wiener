@@ -2,7 +2,6 @@ import google_trans_new
 from google_trans_new import google_translator
 import tabula
 import pandas as pd
-import plotly.figure_factory as ff
 import os
 from os import listdir
 import os.path
@@ -30,7 +29,7 @@ def translate_document():
         df.to_csv('translated_data.csv',sep=',')
  
     
-    else if file.endswith('.xlsx'):
+    elif file.endswith('.xlsx'):
     
     
         df2 = pd.read_excel(file)
@@ -50,7 +49,7 @@ def translate_document():
         df_sliced.to_csv('translated_data.csv',sep=',')
     
     
-    else if file.endswith('.docx'):
+    elif file.endswith('.docx'):
     
         document = Document(file)
         table = document.tables[0]
