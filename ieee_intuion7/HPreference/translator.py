@@ -34,6 +34,7 @@ def translate_document():
     
         df2 = pd.read_excel(tmpDir + file)
         df2 = df2.take([3,25],axis=1)
+        translator = google_translator()
     
         indexes_to_drop = list(range(0,25)) + list(range(38,50))
         indexes_to_keep = set(range(df2.shape[0])) - set(indexes_to_drop)
