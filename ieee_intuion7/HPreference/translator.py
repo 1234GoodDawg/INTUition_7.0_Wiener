@@ -72,5 +72,5 @@ def translate_document():
         
     
     
-    return os.path.isfile('translated_datas.csv')
+    return os.path.isfile('translated_data.csv')
 
