@@ -4,7 +4,7 @@ import pandas as pd
 from pandas.plotting import table 
 import matplotlib.pyplot as plt
 
-query = 'Mercury'
+query = ''
 mylist = []
 
 pdf = pdfplumber.open('HP.pdf')
@@ -16,7 +16,6 @@ for i in range(len(pdf.pages)):
             for j in range(cur.shape[0]):
                 if(query in cur[j][0]):
                     mylist.append(cur[j])
-
         except:
             pass
 
