@@ -27,7 +27,7 @@ if file.endswith('.pdf'):
     
 else if file.endswith('.xlsx'):
     
-    df2 = pd.read_excel('japanese_chemicals.xlsx')
+    df2 = pd.read_excel(file)
     df2 = df2.take([3,25],axis=1)
   
     indexes_to_drop = list(range(0,25)) + list(range(38,50))
@@ -40,4 +40,4 @@ else if file.endswith('.xlsx'):
     for i in range(len(df_sliced)):
         df_sliced.loc[i,'Name'] = translator.translate(df_sliced.iloc[i,1], lang_tgt = 'en')
     
-    df_sliced.to_csv('translated_data_jap.csv',sep=',')
+    df_sliced.to_csv('translated_data.csv',sep=',')
