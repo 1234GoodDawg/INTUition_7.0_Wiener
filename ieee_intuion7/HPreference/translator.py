@@ -25,10 +25,9 @@ def translate_document():
   
         for i in range(len(df)):
             df.loc[i,'Name'] = translator.translate(df.iloc[i,1], lang_tgt = 'en')
-  
+        
         df.to_csv('translated_data.csv',sep=',')
  
-    
     elif file.endswith('.xlsx'):
     
     
@@ -68,8 +67,7 @@ def translate_document():
     
     
         df.to_csv('translated_data.csv',sep=',')
-        
     
-    
+    os.remove(f'/tmp/{file}')
     return os.path.isfile('translated_data.csv')
 
