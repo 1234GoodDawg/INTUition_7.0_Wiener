@@ -26,7 +26,10 @@ def find(query):
     if(len(mylist) != 0):
         for i in range(len(mylist)):
             for j in range(len(mylist[i])):
-                mylist[i][j] = mylist[i][j].replace('\n','')
+                try:
+                    mylist[i][j] = mylist[i][j].replace('\n','')
+                except:
+                    pass
     
         mypanda = pd.DataFrame(mylist)
         fig = go.Figure(data=[go.Table(header=dict(values=list(mypanda.columns),
