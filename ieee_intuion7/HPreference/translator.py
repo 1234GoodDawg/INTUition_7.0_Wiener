@@ -7,7 +7,6 @@ import os
 
 
 if file.endswith('.pdf'):
-    a
 
     tabula.convert_into(file,'data.csv', pages='all')
     df = pd.read_csv('data.csv') 
