@@ -9,7 +9,7 @@ from docx import Document
 
 def translate_document():
     
-    file = os.listdir('/tmp/')
+    file = os.listdir('/tmp/')[0]
     
     def astype_per_column(df: pd.DataFrame, column: str, dtype):
         df[column] = df[column].astype(dtype)
