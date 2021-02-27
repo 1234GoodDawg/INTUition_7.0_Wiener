@@ -6,8 +6,6 @@ import plotly.figure_factory as ff
 import os
 from os import listdir
 import os.path
-
-from os.path import isfile, join
 from docx import Document
 
 def translate_document():
