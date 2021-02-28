@@ -1,1 +1,13 @@
-google_trans_new == 1.1.9tabula-py == 2.2.0python-docx == 0.8.10pandas
+google_trans_new == 1.1.9
+tabula-py == 2.2.0
+python-docx == 0.8.10
+googlesearch-python == 2020.0.2
+pdfplumber == 0.1.2
+wordcloud == 1.8.1
+seaborn
+numpy
+urllib
+matplotlib.pyplot
+beautifulsoup4
+pandas
+plotly
