@@ -1,3 +1,4 @@
+google-cloud-storage
 google_trans_new == 1.1.9
 tabula-py == 2.2.0
 python-docx == 0.8.10
@@ -9,5 +10,6 @@ numpy
 urllib
 matplotlib.pyplot
 beautifulsoup4
+openpyxl
 pandas
 plotly
