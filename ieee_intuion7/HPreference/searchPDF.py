@@ -12,7 +12,6 @@ def find(query, num):
     mylist = []
 
     pdf = pdfplumber.open('HP.pdf')
-    os.mkdir('/tmp/requirements/')
 
     for i in range(len(pdf.pages)):
         if(query in pdf.pages[i].extract_text()):
