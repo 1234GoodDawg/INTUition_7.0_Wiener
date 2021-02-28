@@ -24,5 +24,5 @@ def prep(filename):
             for elem in new:
                 if(find(elem,i)):
                     i +=1
-                    print(f"Found {i}/{len(chemical_names)} requirements"}
+                    print(f"Found {i}/{len(chemical_names)} requirements")
                     break
