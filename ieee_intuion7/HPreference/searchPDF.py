@@ -6,7 +6,7 @@ import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.io
 import os
-/tmp/
+
 def find(query, num):
 
     mylist = []
