@@ -5,8 +5,9 @@ from pandas.plotting import table
 import matplotlib.pyplot as plt
 import plotly.graph_objects as go
 import plotly.io
-
-def find(query):
+import os
+/tmp/
+def find(query, num):
 
     mylist = []
 
@@ -38,8 +39,8 @@ def find(query):
                         cells=dict(values=[mypanda[item] for item in mypanda.columns],
                         fill_color='lavender',
                         align='left'))])
-        fig.show()
-        # plotly.io.write_image(fig,'requirements.png',format='png',width=1500,height=1500)
+
+        plotly.io.write_image(fig,'/tmp/requirements '+f'{i}'+'.png',format='png',width=1500,height=1500)
         return True 
         
     else:
