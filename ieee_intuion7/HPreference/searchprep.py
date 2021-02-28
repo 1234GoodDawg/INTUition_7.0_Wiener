@@ -5,7 +5,7 @@ import os
 
 
 def prep(filename):
-    mypath = '/tmp/'
+    mypath = '/tmp/requirements/'
     if not os.path.isdir(mypath):
         os.makedirs(mypath)
         
