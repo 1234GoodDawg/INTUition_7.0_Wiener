@@ -40,7 +40,7 @@ def find(query, num):
                         fill_color='lavender',
                         align='left'))])
 
-        plotly.io.write_image(fig,'/tmp/requirements/requirements_'+f'{i}'+'.png',format='png',width=1500,height=1500)
+        plotly.io.write_image(fig,'/tmp/requirements/requirements_'+f'{query}'+'.png',format='png',width=1500,height=1500)
         return True 
         
     else:
