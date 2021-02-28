@@ -16,7 +16,7 @@ def prep(filename):
     for item in chemical_names:
         if(find(item,i)):
             i +=1
-            print(f"Found {i}/{len(chemical_names)} requirements"}
+            print(f"Found {i}/{len(chemical_names)} requirements")
             continue
         else:
             wordlist = item.split(' ')
