@@ -6,6 +6,7 @@ import os
 from os import listdir
 import os.path
 from docx import Document
+import pdfplumber as plumber
 
 def translate_document():
     
@@ -17,8 +18,9 @@ def translate_document():
    
     if file.endswith('.pdf'):
         
-        tabula.convert_into(tmpDir + file,'data.csv', pages='all')
-        df = pd.read_csv('data.csv') 
+        pdf = plumber.open(file)
+
+        df = pd.DataFrame(pdf.pages[0].extract_table())
 
         translator = google_translator()
     
