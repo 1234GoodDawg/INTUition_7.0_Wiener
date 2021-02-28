@@ -4,7 +4,6 @@ from search_pdf import find
 def prep(filename):
     temp = pd.read_csv(filename)
     chemical_names = set(temp['Name'].to_list())
-    print(chemical_names)
 
     chemical_names = ['Mercury','and']
     for item in chemical_names:
