@@ -8,6 +8,7 @@ import 'package:firebase/firebase.dart' as fb;
 import 'package:blinking_text/blinking_text.dart';
 import 'package:firebase/firestore.dart' as fs;
 import 'search.dart';
+import 'visualise.dart';
 
 void main() {
   runApp(
@@ -16,6 +17,7 @@ void main() {
       routes: {
         '/': (context) => LandingPage(),
         '/search': (context) => SearchPage(),
+        '/visualise': (context) => VisualisePage(),
       },
     ),
   );
@@ -81,6 +83,7 @@ class _InputFormState extends State<InputForm> {
   fb.UploadTask uploadTask;
   html.File file;
   Widget errorMessage = SizedBox();
+  bool validFile = false;
 
   //FilePickerResult result;
   // List<FilePickerResult> files;
@@ -91,19 +94,35 @@ class _InputFormState extends State<InputForm> {
   }
 
   uploadToFirebase(html.File file) async {
+    final acceptableExtensions = ['pdf', 'xlsx', 'docx'];
     final fileExtension = file.name.split(".")[1];
     final filePath = 'UserSearch/${DateTime.now()}.$fileExtension';
-    try {
-      print(file.name);
+    if (acceptableExtensions.contains(fileExtension)) {
+      try {
+        print(file.name);
+        setState(() {
+          uploadTask = fb
+              .storage()
+              .refFromURL(
+                  'gs://ieeeintuition-hp-chemsearch.appspot.com/' + filePath)
+              .put(file);
+        });
+      } catch (e) {
+        print(e);
+      }
+    } else {
       setState(() {
-        uploadTask = fb
-            .storage()
-            .refFromURL(
-                'gs://ieeeintuition-hp-chemsearch.appspot.com/' + filePath)
-            .put(file);
+        validFile = false;
+        errorMessage = BlinkText(
+          'Invalid File Type',
+          style: TextStyle(
+            color: Colors.red[400],
+          ),
+          endColor: Colors.red[900],
+          times: 3,
+          duration: Duration(milliseconds: 500),
+        );
       });
-    } catch (e) {
-      print(e);
     }
   }
 
@@ -119,6 +138,7 @@ class _InputFormState extends State<InputForm> {
       reader.onLoadEnd.listen((e) async {
         setState(() {
           file = uploadedFile;
+          validFile = true;
         });
       });
     });
@@ -171,7 +191,7 @@ class _InputFormState extends State<InputForm> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Container(
-                        child: file != null
+                        child: file != null && validFile == true
                             ? Text(
                                 file.name,
                                 style: TextStyle(
@@ -229,7 +249,9 @@ class _InputFormState extends State<InputForm> {
                     child: Text('Add File'),
                   ),
                   ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(context, '/search'),
+                    onPressed: () async {
+                      Navigator.pushNamed(context, '/visualise');
+                    },
                     child: Text(
                       'View Searches',
                     ),
@@ -250,6 +272,8 @@ class _InputFormState extends State<InputForm> {
                           });
                         } else {
                           uploadToFirebase(file);
+                          Future.delayed(const Duration(seconds: 2),
+                              () => Navigator.pushNamed(context, '/search'));
                         }
                       },
                       child: Text(
